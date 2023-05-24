@@ -1,0 +1,138 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap");
+
+*,
+html {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Quicksand", sans-serif;
+}
+
+body {
+  background-color: white;
+  padding: 30px;
+}
+
+header {
+  margin-bottom: 30px;
+}
+
+ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+ul li img {
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border: 1px solid black;
+}
+
+header h1 {
+  margin-bottom: 15px;
+}
+
+form {
+  display: flex;
+  justify-content: space-between;
+  border-radius: 0;
+  max-width: 600px;
+  border: 1px solid black;
+}
+
+form input {
+  border: none;
+  height: 45px;
+  font-size: 16px;
+  border-radius: 0;
+  padding: 0px 20px;
+  width: 100%;
+}
+
+input:focus,
+input:active {
+  outline: none;
+}
+
+form button {
+  background: black;
+  font-weight: 600;
+  font-size: 18px;
+  border: none;
+  color: white;
+  height: 45px;
+  border-radius: 0;
+  padding: 0px 20px;
+}
+
+.overlay {
+  background-color: rgba(0, 0, 0, 0.9);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 30px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  visibility: hidden;
+}
+
+.overlay img {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.overlay p {
+  margin-bottom: 5px;
+}
+
+.overlay button {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  background: white;
+  font-weight: 600;
+  font-size: 18px;
+  border: none;
+  color: black;
+  height: 45px;
+  border-radius: 0;
+  padding: 0px 10px;
+}
+
+.state {
+  margin-top: 30px;
+}
+
+.state img {
+  width: 100%;
+}
+
+.state p {
+  font-size: 16px;
+  text-align: center;
+  max-width: 250px;
+  margin: auto;
+}
+
+#nothingfound-image {
+  display: none;
+}
+
+#errorstate-image {
+  display: none;
+}
+
+#loading {
+  display: none;
+  padding-top: 100px;
+  width: 125px;
+  margin: auto;
+}
