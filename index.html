@@ -11,6 +11,7 @@
   <body>
     <header>
       <h1>ArtFinder</h1>
+      <!-- Zoekbalk -->
       <form id="search-form">
         <input
           type="text"
@@ -21,25 +22,31 @@
       </form>
     </header>
 
+    <!-- Lijst met kunstwerken -->
     <ul></ul>
 
+    <!-- Start state -->
     <div class="state" id="zerostate-image">
       <img src="images/zerostate.svg" alt="" />
       <p>Search for an artist/artwork via the search bar</p>
     </div>
 
+    <!-- Zero State -->
     <div class="state" id="nothingfound-image">
       <img src="images/nothingfound.svg" alt="" />
       <p>Unfortunately we couldn't find anything..</p>
     </div>
 
+    <!-- Error State -->
     <div class="state" id="errorstate-image">
       <img src="images/errorstate.svg" alt="" />
       <p>Oops something went wrong, please try again..</p>
     </div>
 
+    <!-- Loading State -->
     <img id="loading" src="images/Pulse-1s-200px.gif" alt="" />
 
+    <!-- Overlay voor kunstwerk details -->
     <div class="overlay"></div>
   </body>
 </html>
