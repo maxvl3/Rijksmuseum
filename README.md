@@ -35,8 +35,72 @@ Ik heb ook een concept gemaakt in Figma, zodat ik me minder bezig hoefde te houd
 ## 🔨 Features
 
 - Gebruik de zoekbalk om te zoeken naar kunstwerken
+
+```
+async function getData(searchInput) {
+  try {
+    const response = await fetch(
+      "https://www.rijksmuseum.nl/api/nl/collection?key=yLfBqOT3&imgonly=true&ps=10&s=relevance&q=" +
+        searchInput
+    );
+    const data = await response.json();
+    
+    // Filter de gegevens en maak een nieuw array
+    const filteredData = data.artObjects.map((artObject) => {
+      const { id, title, principalOrFirstMaker, webImage } = artObject;
+      const imageUrl = webImage ? webImage.url + "1000" : "";
+      return { id, title, principalOrFirstMaker, imageUrl };
+    });
+    displayData(filteredData);
+ ```
+ 
+ Hier voer ik voor elke zoekopdracht een fetch uit met het zoekwoord als parameter. De data filter ik vervolgens zodat ik alleen de data overhoud die nuttig is voor de applicatie. Ten slotte voer ik de displayData functie uit.
+
 - Krijg een overzicht van de resultaten
-- Klik op een kunstwerk om meer detail te bekijken
+
+```
+function displayData(filteredData) {
+  const artworksList = document.querySelector("ul");
+  const overlay = document.querySelector(".overlay");
+
+  filteredData.forEach((artObject) => {
+    const li = document.createElement("li");
+    const img = document.createElement("img");
+    const a = document.createElement("a");
+    img.src = artObject.imageUrl;
+    a.href = `/#${artObject.id}`;
+    a.appendChild(img);
+    li.appendChild(a);
+    artworksList.appendChild(li);
+  });
+```
+
+De displayData functie maakt voor elk kunstwerk een li aan met daarin in een link en een afbeelding. De link zorgt ervoor dat elk kunstwerk een unieke hash krijgt gebaseerd op de ID van het kunstwerk.
+
+- Klik op een kunstwerk om meer details te bekijken
+
+```
+function displayOverlay(artObject) {
+    const closeButton = document.createElement("button");
+    closeButton.textContent = "Close";
+
+    const img = document.createElement("img");
+    img.src = artObject.imageUrl;
+    const title = document.createElement("h2");
+    title.textContent = artObject.title;
+    const artist = document.createElement("p");
+    artist.textContent = artObject.principalOrFirstMaker;
+
+    overlay.innerHTML = "";
+    overlay.appendChild(closeButton);
+    overlay.appendChild(img);
+    overlay.appendChild(artist);
+    overlay.appendChild(title);
+    overlay.style.visibility = "visible";
+  }
+```
+
+Dit is een deel van de functie die de overlay opent met daarin meer details over een specifiek kunstwerk. Elke keer wanneer een gebruiker op een kunstwerk klikt wordt dit stukje code uitgevoerd. Op die manier word de overlay telkens vervangen door een nieuw kunstwerk.
 
 ## 📈 Wireflow
 
