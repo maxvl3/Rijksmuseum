@@ -1,103 +1,103 @@
-const searchForm = document.getElementById("search-form");
+// const searchForm = document.getElementById("search-form");
 
-searchForm.addEventListener("submit", async (event) => {
-  event.preventDefault();
+// searchForm.addEventListener("submit", async (event) => {
+//   event.preventDefault();
 
-  const searchInput = document.getElementById("search-input").value;
+//   const searchInput = document.getElementById("search-input").value;
 
-  getData(searchInput);
-});
+//   getData(searchInput);
+// });
 
-async function getData(searchInput) {
-  try {
-    const zerostateImage = document.getElementById("zerostate-image");
-    const nothingfoundImage = document.getElementById("nothingfound-image");
-    const loadingImage = document.getElementById("loading");
-    const artworksList = document.querySelector("ul");
-  
-    artworksList.innerHTML = "";
+// async function getData(searchInput) {
+//   try {
+//     const zerostateImage = document.getElementById("zerostate-image");
+//     const nothingfoundImage = document.getElementById("nothingfound-image");
+//     const loadingImage = document.getElementById("loading");
+//     const artworksList = document.querySelector("ul");
 
-    zerostateImage.style.display = "none";
-    nothingfoundImage.style.display = "none";
-    loadingImage.style.display = "block";
+//     artworksList.innerHTML = "";
 
-    await delay(2000);
+//     zerostateImage.style.display = "none";
+//     nothingfoundImage.style.display = "none";
+//     loadingImage.style.display = "block";
 
-    const response = await fetch(
-      "https://www.rijksmuseum.nl/api/nl/fs524/collection?key=yLfBqOT3&imgonly=true&ps=10&s=relevance&q=" +
-        searchInput
-    );
-    const data = await response.json();
+//     await delay(2000);
 
-    if (data.artObjects.length === 0) {
-      nothingfoundImage.style.display = "block";
-    } else {
-      nothingfoundImage.style.display = "none";
-    }
+//     const response = await fetch(
+//       "https://www.rijksmuseum.nl/api/nl/fs524/collection?key=yLfBqOT3&imgonly=true&ps=10&s=relevance&q=" +
+//         searchInput
+//     );
+//     const data = await response.json();
 
-    loadingImage.style.display = "none";
-    displayData(data);
-  } catch (error) {
-    const loadingImage = document.getElementById("loading");
-    loadingImage.style.display = "none";
-    const errorImage = document.getElementById("errorstate-image");
-    errorImage.style.display = "block";
-    console.log(error);
-  }
-}
+//     if (data.artObjects.length === 0) {
+//       nothingfoundImage.style.display = "block";
+//     } else {
+//       nothingfoundImage.style.display = "none";
+//     }
 
-function delay(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
+//     loadingImage.style.display = "none";
+//     displayData(data);
+//   } catch (error) {
+//     const loadingImage = document.getElementById("loading");
+//     loadingImage.style.display = "none";
+//     const errorImage = document.getElementById("errorstate-image");
+//     errorImage.style.display = "block";
+//     console.log(error);
+//   }
+// }
 
-function displayData(data) {
-  const artworksList = document.querySelector("ul");
-  const overlay = document.querySelector(".overlay");
+// function delay(ms) {
+//     return new Promise(resolve => setTimeout(resolve, ms));
+// }
 
-  data.artObjects.forEach((artObject) => {
-    const li = document.createElement("li");
-    const img = document.createElement("img");
-    const a = document.createElement("a");
+// function displayData(data) {
+//   const artworksList = document.querySelector("ul");
+//   const overlay = document.querySelector(".overlay");
 
-    img.src = artObject.webImage.url + 1000;
+//   data.artObjects.forEach((artObject) => {
+//     const li = document.createElement("li");
+//     const img = document.createElement("img");
+//     const a = document.createElement("a");
 
-    a.href = `/#${artObject.id}`;
-    a.appendChild(img);
-    li.appendChild(a);
-    artworksList.appendChild(li);
+//     img.src = artObject.webImage.url + 1000;
 
-    img.addEventListener("click", () => {
-      displayOverlay(artObject);
-    });
-  });
+//     a.href = `/#${artObject.id}`;
+//     a.appendChild(img);
+//     li.appendChild(a);
+//     artworksList.appendChild(li);
 
-  function displayOverlay(artObject) {
-    const closeButton = document.createElement("button");
-    closeButton.textContent = "Close";
-    closeButton.addEventListener("click", () => {
-      overlay.style.visibility = "hidden";
-      window.history.replaceState(
-        null,
-        document.title,
-        window.location.pathname
-      );
-    });
+//     img.addEventListener("click", () => {
+//       displayOverlay(artObject);
+//     });
+//   });
 
-    const img = document.createElement("img");
-    img.src = artObject.webImage.url + 1000;
+//   function displayOverlay(artObject) {
+//     const closeButton = document.createElement("button");
+//     closeButton.textContent = "Close";
+//     closeButton.addEventListener("click", () => {
+//       overlay.style.visibility = "hidden";
+//       window.history.replaceState(
+//         null,
+//         document.title,
+//         window.location.pathname
+//       );
+//     });
 
-    const title = document.createElement("h2");
-    title.textContent = artObject.title;
+//     const img = document.createElement("img");
+//     img.src = artObject.webImage.url + 1000;
 
-    const artist = document.createElement("p");
-    artist.textContent = artObject.principalOrFirstMaker;
+//     const title = document.createElement("h2");
+//     title.textContent = artObject.title;
 
-    overlay.innerHTML = "";
-    overlay.appendChild(closeButton);
-    overlay.appendChild(img);
-    overlay.appendChild(artist);
-    overlay.appendChild(title);
+//     const artist = document.createElement("p");
+//     artist.textContent = artObject.principalOrFirstMaker;
 
-    overlay.style.visibility = "visible";
-  }
-}
+//     overlay.innerHTML = "";
+//     overlay.appendChild(closeButton);
+//     overlay.appendChild(img);
+//     overlay.appendChild(artist);
+//     overlay.appendChild(title);
+
+//     overlay.style.visibility = "visible";
+//   }
+// }

@@ -25,7 +25,7 @@ function displayData(filteredData) {
   // Functie om de overlay weer te geven met details van het kunstobject
   function displayOverlay(artObject) {
     const closeButton = document.createElement("button");
-    closeButton.textContent = "Sluiten";
+    closeButton.textContent = "Close";
 
     // Voeg een click event listener toe aan de sluitknop om de overlay te verbergen
     closeButton.addEventListener("click", () => {
