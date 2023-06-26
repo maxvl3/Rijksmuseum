@@ -1,4 +1,4 @@
-# 🎨 ArtFinder | Web App from Scratch herkansing
+# 🎨 ArtFinder | Web app from scratch
 
 ![cover2](https://github.com/maxvl3/WAFSherkansing/assets/94384526/c7413e39-eac4-4470-bd7f-6a7b15cb9567)
 
